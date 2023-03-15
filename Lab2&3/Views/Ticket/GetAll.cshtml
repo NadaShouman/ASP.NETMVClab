@@ -1,0 +1,36 @@
+﻿@{
+    var tickets = Model;
+}
+<table class="table">
+    <tr>
+        <th>Ticket ID</th>
+        <th>Created Time</th>
+        <th>Is Closed</th>
+        <th>Severity</th>
+        <th>Description</th>
+        <th>Department</th>
+    </tr>
+    @foreach (var ticket in tickets)
+    {
+            <tr>
+            <td><a href="/ticket/getdetails/@ticket.Id">@ticket.Id</a></td>
+                <td>@ticket.CreatedTime</td>
+                <td>@ticket.IsClosed</td>
+                <td>@ticket.Severity</td>
+                <td>@ticket.Description</td>
+                <td>@ticket.Department.Name</td>
+            <td>
+                <button class="btn-success rounded border-0 p-2">
+                    <a class="text-white text-decoration-none" href="/ticket/edit/@ticket.Id">Edit</a>
+                </button>
+            </td>
+            <td>
+                <form action="Delete/@ticket.Id" method="post">
+                    <button class="btn-danger rounded border-0 p-2">
+                        Delete
+                    </button>
+                </form>
+            </td>
+            </tr>
+    }
+</table>
